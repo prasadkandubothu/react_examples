@@ -18,7 +18,11 @@ class Todo extends React.Component{
            
             return (
                 <h6 style={todoStyle}>
-                    <input type="checkbox" checked={this.props.config.completed} onChange={() => this.props.checkboxHandler(this.props.config.id)}/> {this.props.config.itemName}      
+                    <input type="checkbox" checked={this.props.config.completed} onChange={() => this.props.checkboxHandler(this.props.config.id)}/> {this.props.config.itemName}  
+                    <span style={{display :  this.props.config.completed === false ? 'inline' : 'none'}}>
+                        <input type="button" value="Delete" onClick={() => this.props.deleteHandler(this.props.config.id)}>
+                        </input> <input type="button" value="Edit" onClick={() => this.props.editHandler(this.props.config)}></input>
+                    </span>
                 </h6>
             
             );

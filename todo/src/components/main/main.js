@@ -15,6 +15,7 @@ class Main extends React.Component{
        // this.buttonHandler = this.buttonHandler.bind(this);
         this.checkboxHandler = this.checkboxHandler.bind(this);
         this.addItemHendler = this.addItemHendler.bind(this);
+        this.deleteHandler = this.deleteHandler.bind(this);
         
     }
     
@@ -24,9 +25,8 @@ buttonHandler(){
 
 }
 
-checkboxHandler(id){
-  
 
+checkboxHandler(id){
     this.setState(prevState => {
 console.log("Complete Prev State : "+prevState);
        const updatedTodos= prevState.pendingTodos
@@ -43,37 +43,62 @@ console.log("Complete Prev State : "+prevState);
     return {
         pendingTodos : prevState.pendingTodos.filter(item => item.completed === false), 
         completedTodos : prevState.completedTodos
-    
     }
     });
 }
 
 
-addItemHendler(itemName){
+addItemHendler(itemName){ 
     const newItem = {}
     newItem.id = this.state.pendingTodos.length + this.state.completedTodos.length + 1;
     newItem.itemName = itemName;
-    newItem.completed = false;
+    newItem.completed = false; console.log(newItem);
+
     this.setState(prevState => {
+        prevState.pendingTodos.push(newItem);
         return {
-            pendingTodos : prevState.pendingTodos.push(newItem)
+            pendingTodos : prevState.pendingTodos
+        }
+    });
+
+    this.refs.addItemRef.clearInput();
+    
+}
+
+editHandler(config){
+    alert(config.itemName + "==="+JSON.stringify(this));
+   // this.refs.addItemRef.setInput(config.itemName);
+    /*
+    this.setState(prevState => {        
+        return {
+            pendingTodos : prevState.pendingTodos.map(i => {
+                if(i.id === config.id){
+
+                }
+            })
+        }
+    });*/
+}
+
+deleteHandler(id){
+    this.setState(prevState => {        
+        return {
+            pendingTodos : prevState.pendingTodos.filter(i => i.id !== id)
         }
     });
 }
-
 
     render(){
    
             const mainStyle = {
                 width : '100%'
             }
-
+            
             const pendingTodoItems=this.state.pendingTodos.map((todo, index) => {
-            return <Todo key={todo.id} config={todo} checkboxHandler={this.checkboxHandler}/>;
+            return <Todo key={todo.id} config={todo} checkboxHandler={this.checkboxHandler} deleteHandler={this.deleteHandler} editHandler={this.editHandler}/>;
             });
 
             const completedTodoItems=this.state.completedTodos.map((todo, index) => {
-                console.log("ToDo : "+todo.itemName);
             return <Todo key={todo.id} config={todo} checkboxHandler={this.checkboxHandler}/>;
             });
 
@@ -82,7 +107,7 @@ addItemHendler(itemName){
                 <div className="container">
                 <div className="row" style={{paddingTop : '25px'}}>
                     <div className="col-md-4">
-                   <AddItem addItemHandlerChild={this.addItemHendler}/>
+                   <AddItem myAddItemHandler={this.addItemHendler} ref="addItemRef"/>
                     </div>
                 </div>
                 <div className="row" style={{paddingTop : '60px'}}>

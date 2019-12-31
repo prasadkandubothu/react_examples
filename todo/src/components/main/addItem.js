@@ -3,28 +3,34 @@ import React from 'react';
 
 class AddItem extends React.Component{
 
-   constructor(){
-       super();
+   constructor(props){
+       super(props);
        this.state = {
            itemName : ''
        }
   
-
    this.updateInput = this.updateInput.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
+   this.clearInput = this.clearInput.bind(this);
+   this.setInput = this.setInput.bind(this);
+   //this.myAddItemHandler = this.myAddItemHandler.bind(this);
 }
 
+/*myAddItemHandler(itemName){
+    alert( "Clicked  : "+itemName);
+}*/
 
 updateInput(event){
-this.setState({itemName : event.target.value})
+    console.log("state changing")
+    this.setState({itemName : event.target.value})
 }
 
-
-handleSubmit(){
-console.log('Your input value is: ' + this.state.itemName)
-//Send state to the server code
+clearInput(){
+    this.setState({itemName : ''});
 }
 
+setInput(itemName){
+    this.setState({itemName : itemName});
+}
 
 
     render(){
@@ -35,8 +41,10 @@ console.log('Your input value is: ' + this.state.itemName)
         }
         return (
             <div style={addItemDivStyle}>
-                <input type="text" placeholder="Add Item" id="itemName" onChange={this.updateInput}></input>
-            <button onClick={this.props.addItemHandlerChild('hi')}>Add Item</button>
+                <form>
+                    <input type="text" placeholder="Add Item" id="itemName" onChange={this.updateInput} autoComplete="off" value={this.state.itemName}></input> 
+                    <input type="button"  value="Add Item" onClick={() => this.props.myAddItemHandler(this.state.itemName)}></input>
+            </form>
             </div>
         );
     }
