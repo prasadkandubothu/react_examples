@@ -3,6 +3,7 @@ import {BrowserRouter, Link, Route} from 'react-router-dom';
 
 import './App.css';
 import User from './components/users/User';
+import Users from './components/users/Users';
 import Posts from './components/posts/Posts';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 
       <Fragment>
           <Route exact  path="/" render={() =>  <div>Home Page</div>}></Route>
-          <Route path="/users" render={() => <User/>}></Route>
+          <Route path="/users" render={(props) => <Users {...props}/>}></Route>
           <Route path="/posts" render={() => <Posts/>}></Route>
       </Fragment>
 

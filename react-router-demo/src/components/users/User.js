@@ -1,22 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 export default class User extends Component {
 
-    state = {
-        users : []
-    }
-
-    componentDidMount(){
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(user => {this.setState({users : user})})
-    }
+    
 
     render() {
+        console.log("In User :  "+ this.props.match.url );
+        console.log("In User :  "+ this.props.match.params.userId );
+        
         return (
             <div>
-               {this.state.users.map(user => <div>{user.name}</div>)}
+              Hi
             </div>
         )
     }
 }
+

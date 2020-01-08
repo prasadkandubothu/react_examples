@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "firstname": "admin",
+      "lastname": "admin",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "firstname": "prasad",
+      "lastname": "prasad",
+      "password": "prasad",
+      "role": "user",
+      "id": 2,
+      "username": "prasad"
+    }
+  ],
+  "roles": [
+    {
+      "roleId": 1,
+      "roleName": "admin"
+    },
+    {
+      "roleId": 2,
+      "roleName": "user"
+    },
+    {
+      "roleId": 3,
+      "roleName": "librarian"
+    }
+  ],
+  "books": [
+    {
+      "bookName": "Java by James",
+      "author": "James",
+      "category": "coding",
+      "id": 1,
+      "bookStatus": "AVAILABLE"
+    },
+    {
+      "id": 2,
+      "bookName": "Wndiows by Gates",
+      "author": "Gates",
+      "publications": "Vikram Publications",
+      "category": "coding",
+      "bookStatus": "ISSUED"
+    },
+    {
+      "id": 4,
+      "bookName": "CPU by Charles",
+      "author": "Charles",
+      "publications": "Vikram Publications",
+      "category": "coding",
+      "bookStatus": "REQUESTED"
+    }
+  ],
+  "circulation": [
+    {
+      "status": "INPROGRESS",
+      "bookId": 4,
+      "returnDate": "2019-10-19",
+      "issueDate": "",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "status": "DONE",
+      "bookId": 2,
+      "returnDate": "2019-10-19",
+      "issueDate": "",
+      "userId": 2,
+      "id": 2
+    }
+  ]
+}
