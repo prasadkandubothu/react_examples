@@ -8,9 +8,9 @@ export default class Footer extends Component {
                 <footer style={{ 
                     bottom: '0px', position: 'fixed', width: '100%',
                     backgroundColor: '#3f51b5', color: 'white',
-                    textAlign: 'center'
+                    textAlign: 'center', padding : '6px'
                 }}>
-                    <p>Posted by: Hege Refsnes</p>
+                    <span>Posted by: Hege Refsnes</span>
                     {/* <p>Contact information: <a href="mailto:someone@example.com">
                         someone@example.com</a>.</p> */}
                 </footer>
