@@ -1,18 +1,15 @@
 import React, { Fragment, createContext } from 'react';
 import './App.css';
-import Parent from './context/Parent';
-import Sibling from './context/Sibling';
-import Child from './context/Child';
+import ReduxDemo from './redux/ReduxDemo';
+import ReduxDemo2 from './reduxdemo2/ReduxDemo2';
+
 
 function App() {
-  return (
-    <Fragment>
-     
-      <Parent/>
-      <Child/>
-      <Sibling/>
-    </Fragment>
-  );
+	return (
+		<Fragment>
+          <ReduxDemo2/>
+		</Fragment>
+	);
 }
 
 export default App;

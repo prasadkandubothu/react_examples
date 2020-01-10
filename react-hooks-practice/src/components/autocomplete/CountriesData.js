@@ -1,36 +1,44 @@
 import React, { Component, useContext } from 'react'
 import axios from 'axios';
-import { UserContext} from '../App';
+import { UserContext } from '../../App';
 
 
 
-export default class CountriesData extends Component {
+
+ class CountriesData extends Component {
+
+    
 
     constructor(props) {
         super(props)
-    
-        this.state = {
-        }
-
-        console.log("conext :  "+this.props.name);
+   
     }
 
    
 
     //https://restcountries.eu/rest/v2/all
     
-    componentDidMount() { console.log("component did mount")
+    componentDidMount() { 
+    const value=this.context;
+     console.log(this.context);
+console.log("component did mount : "+value)
         axios.get('https://restcountries.eu/rest/v2/all')
         .then(res => console.log(res))
         .catch(err => console.log(err))
   }
 
     render() {
-         const name = useContext(UserContext);
+         //const name = useContext(UserContext);
         return (
-            <UserContext.Consumer>
-                hi : {name}
-            </UserContext.Consumer>
+           <div>
+                hi : 
+                </div>
+           
         )
     }
+    
 }
+
+
+
+export default CountriesData;

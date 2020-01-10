@@ -1,0 +1,103 @@
+Redux:
+------
+> npm install redux react-redux
+
+Redux is a library for Javascript applications
+Redux is a state container. //store the state of your application
+Stores the state of all individual components in a single object.
+
+
+Store : that holds the state of your application.
+Action : that describes the changes in the state of the application.
+Reducer :  it carries out the state transition depending on the action.
+
+3 Priciples of Redux :
+    1. Maintain out application state in a single object, would be managed my Redux store.
+    2. The only way to change the state is to emit/dispatch an action, an object describes what happend.
+        [To update the state of your application, you need to let Redux know about that with an action. You are not allowed to directly update the state object]
+    3. To specify how the state is transformed by actions, you write pure Reducers. [i.e Reducer handles that action and updates the state]
+        Reducer - (prevState, action) => newState
+    
+Actions :
+---------
+    Actions is the only way our application can interact with store.
+    Actions carry some infomation form the application to the Redux store.
+    Actions are plain Javascript objects.
+    {
+        type : 'ACTION_NAME' //type of action being performed
+    }
+
+    Normally we return this object using function
+    function actionName(){
+        return     {
+                type : 'ACTION_NAME' //type of action being performed
+            }
+    }
+    Here type key is must for action object and you can also add other properties on your wish.
+    {
+        type : 'ACTION_NAME',
+        key1 : anything,
+        .. : ..
+        keyN : anythingN
+    }
+
+
+    Async Actions be lke:
+    ---------------------
+    Fetching Data from Server :
+        Normal Component state :
+            {
+                loadgin : false,
+                data : [],
+                error : ''
+            }
+        
+        Actions in fetching Data in redux:
+            FETCHING_DATA_REQUEST - fetch data from Server  //we making the call, so spinner will be displayed i.e  loading : false
+            FETCHING_DATA_SUCCESS - successfully data fetched // here we setup the data to the state
+            FETCHING_DATA_FAILURE - error while fetching //we update the error message to the state
+
+
+Reducer :
+---------
+    Reducer specifies, how the application state changes in response to the actions sent to the store.
+    Reducer is a fucntion that accepts the state and action as arguments and return next state of the application.
+        (prevState, action) => newState
+    
+        Ex: function reducer(state = initalState, action) {
+            switch(action.type)
+                case ACTION1 : return {...state, somthing1}
+                case ACTION2 : return {...state, somthing2}
+                case ACTION3 : return {...state, somthing3}
+                default : return state
+        }
+
+    
+
+Store :
+-------
+    one store for entire application.
+    It holds the application state.
+    Allows access to the state via getState()
+    Allows state to be updated via dispatch(action)
+    You can register listerns via subscribe(lister) method.
+    You can unregister the listener via the function return by subscribe(listerner) method.
+
+
+
+
+
+    Store  --> Provider --> Containers --> Components
+     /\                                           |
+     |                                            |
+     |---   Reducers <-- User Events/ Actions <-- |
+
+==> Create Store with requred Data
+        1. create store // const store = createStore();
+        2. create reducers to store the data 
+        3. combine all the reducers using combineReducers(json object) method
+        4. place this combined reducer object in createStore(<combined_reducer_obj>).
+==> Make available this store data to Components
+        5.
+    
+

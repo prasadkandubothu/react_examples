@@ -1,0 +1,10 @@
+To use context in your project
+    1. Define context in seperate files to avoid the circular dependency issues. //Ex: UsernameContext.js
+        Syntax :
+            export const Context_Name = createContext(<default Value');
+    2. If you want to use the access the default value in ant class component
+        static contextType = Context_Name;
+
+        {this.context} //will provide the default value
+        this.context = <new_value> //will update the value, this wont reflect in other components, it just update the value in all the instances of this component
+        
