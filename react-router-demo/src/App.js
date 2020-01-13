@@ -5,6 +5,7 @@ import './App.css';
 import User from './components/users/User';
 import Users from './components/users/Users';
 import Posts from './components/posts/Posts';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -12,14 +13,15 @@ function App() {
       <BrowserRouter>
       <Link to="/" style={{paddingRight : '20px'}}>Home</Link>
       <Link to="/users" style={{paddingRight : '20px'}}>Users</Link>
-      <Link to="/posts" style={{paddingRight : '20px'}}>Posts</Link>
+      <Link to="/posts/100" style={{paddingRight : '20px'}}>Posts</Link>
 
-
+    <hr/>
       <Fragment>
-          <Route exact  path="/" render={() =>  <div>Home Page</div>}></Route>
+          <Route exact  path="/" component={Home}></Route>
           <Route path="/users" render={(props) => <Users {...props}/>}></Route>
-          <Route path="/posts" render={() => <Posts/>}></Route>
+          <Route path="/posts/:id" render={(props) => <Posts {...props}/>}></Route>
       </Fragment>
+
 
       </BrowserRouter>    
     </Fragment>

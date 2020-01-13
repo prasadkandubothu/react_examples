@@ -1,0 +1,40 @@
+Mounting :
+----------
+    Mounting is the phase in which our React componen mounts on the DOM. (is created and inserted into the DOM)
+    This phase comes into the picture after initialization phase is completed.
+    In this phase, our component will render first time.
+    Avialble methods in this Phase :
+           1. componentWillMount() :
+           -------------------------
+                    This method will be called, before a component mounts on the DOM or the render method is called.
+                    After this method, component gets mounted.
+
+                    Note: You should not make API calls or any data changes using this.setstate in this method because it is called before the render method. 
+                          So, nothing can be done with the DOM (i.e. updating the data with API response) as it has not been mounted. Hence, we can’t update the state with the API response.
+                    
+
+           2. componentDidMount() :
+           ------------------------
+                    This method is called after the component gets mounted on the DOM. Like componentWillMount, it is called once in a lifecycle. 
+                    Before the execution of this method, the render method is called (i.e., we can access the DOM). We can make API calls and update the state with 
+                    the API response.
+                    If we have any changes in the state then, component will be rendered again. (Only once). If no changes in the state, then no render.
+
+Updating :
+----------
+        After completion of Mouting phase, Updating phase comes into the picture.
+        Here the component phase changes and re-render of the component happen.
+        Avialble methods in this phase :
+
+        1. shouldComponentUpdate() :
+        ---------------------------
+        2. componentWillUpdate() :
+        ---------------------------
+        3. componentDidUpdate() : 
+        --------------------------
+
+UnMounting :
+------------
+    1. componentWillUnmount()
+
+    

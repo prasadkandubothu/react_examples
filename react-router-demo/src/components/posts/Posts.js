@@ -14,8 +14,10 @@ export default class Posts extends PureComponent {
     }
 
     render() {
+        console.log(this.props.match.params.id)
         return (
             <div>
+               
                 {this.state.posts.map(post => <div>{post.title}</div>)}
             </div>
         )
