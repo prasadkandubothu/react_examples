@@ -8,7 +8,7 @@ export default class Form1 extends Component {
 			password: '',
 			description: '',
 			topic: '',
-            formErros : {
+            formErrors : {
                 username : '',
                 password : '',
                 description : '',
@@ -17,26 +17,64 @@ export default class Form1 extends Component {
 		};
 	}
 
-	usernameChangeHandler = e => {
-		this.setState({ username: e.target.value });
+	formInputChangeHandler = e => {
+		//this.setState({ username: e.target.value });
+		e.preventDefault();
+		const {name, value} = e.target;
+		let formErrors = this.state.formErrors;
+
+		switch(name){
+			case "username" :
+				formErrors.username = value.length < 3 && value.length > 0  ? "Minimun 3 letters are required." : "";
+				break;
+			case "password" :
+				formErrors.password = value.length < 6 && value.length > 0 ? "Minimun 6 letters are required." : "";
+				break;
+			case "description" :
+				formErrors.description = value.length < 6 && value.length > 0 ? "Minimun 6 letters are required." : "";
+				break;
+			case "topic" :
+				formErrors.topic = value.length == 0 ? "Please select the Topic" : "";
+				break;			
+			default :
+				break;
+		}
+		this.setState({formErrors, [name] : value});
+		console.log(this.state);
 	};
 
-	passwordChangeHandler = e => {
-		this.setState({ password: e.target.value });
-	};
+	// passwordChangeHandler = e => {
+	// 	this.setState({ password: e.target.value });
+	// };
 
-	descriptionChangeHandler = e => {
-		this.setState({ description: e.target.value });
-	};
+	// descriptionChangeHandler = e => {
+	// 	this.setState({ description: e.target.value });
+	// };
 
-	topicChangeHandler = e => {
-		this.setState({ topic: e.target.value });
-	};
+	// topicChangeHandler = e => {
+	// 	this.setState({ topic: e.target.value });
+	// };
 
 	handleSubmit = e => {
 		e.preventDefault();
-		alert('submit');
+		//if(isFormValid(this.state))
+		if(this.isFormValid(this.state))
+			alert("Valid Form");
+		else
+			alert('Invalid Form');
 	};
+
+	isFormValid(state)
+	{
+		const {formErrors, ...fields} = state;
+		const flag = true;
+
+		Object.values(formErrors).forEach(err => 
+			//err.toString().length > 0 ? flag = false : flag
+		);
+
+		return flag;
+	}
 
 	render() {
 		return (
@@ -50,22 +88,22 @@ export default class Form1 extends Component {
 						<input
 							type="text"
 							value={this.state.username}
-							onChange={this.usernameChangeHandler}
+							onChange={this.formInputChangeHandler}
 							name="username"
-							placeHolder="Username"
+							placeholder="Username"
 						/>
 					</div>
 					<div style={{ padding: '10px' }}>
 						<label htmlFor="password">Password :</label>{' '}
-						<input type="password" value={this.state.password} onChange={this.passwordChangeHandler} placeHolder="Password" name="password"/>
+						<input type="password" value={this.state.password} onChange={this.formInputChangeHandler} placeholder="Password" name="password"/>
 					</div>
 					<div style={{ padding: '10px' }}>
 						<label htmlFor="description">Description :</label>{' '}
-						<textarea value={this.state.description} onChange={this.descriptionChangeHandler} placeHolder="Description" name="description"></textarea>
+						<textarea value={this.state.description} onChange={this.formInputChangeHandler} placeholder="Description" name="description"></textarea>
 					</div>
 					<div style={{ padding: '10px' }}>
 						<label htmlFor="topic">Topic : </label>
-						<select value={this.state.topic} onChange={this.topicChangeHandler} name="topic" >
+						<select value={this.state.topic} onChange={this.formInputChangeHandler} name="topic" >
                             <option value="">-Select-</option>
 							<option value="Angular">Angular</option>
 							<option value="React">React</option>
