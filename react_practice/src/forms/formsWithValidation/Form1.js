@@ -67,16 +67,20 @@ export default class Form1 extends Component {
 	isFormValid(state)
 	{
 		const {formErrors, ...fields} = state;
-		const flag = true;
+		let flag = true;
 
 		Object.values(formErrors).forEach(err => 
-			//err.toString().length > 0 ? flag = false : flag
+			{	
+			if(err.length > 0)
+				flag = false;	
+			}
 		);
 
 		return flag;
 	}
 
 	render() {
+		const { formErrors } = this.state;
 		return (
 			<div style={{ justifyContent: 'spaceAround' }}>
 				<form className="App" onSubmit={this.handleSubmit} autoComplete="off" style={{backgroundColor : 'aliceblue'}}>
@@ -92,6 +96,7 @@ export default class Form1 extends Component {
 							name="username"
 							placeholder="Username"
 						/>
+						{formErrors.username.length > 0 && (<p>{formErrors.username}</p>) }
 					</div>
 					<div style={{ padding: '10px' }}>
 						<label htmlFor="password">Password :</label>{' '}
